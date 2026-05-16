@@ -38,6 +38,3 @@ cd frontend
 npm install
 npm run dev
 ```
-
-Autor
-Nicollas Gonçalves Vilela
