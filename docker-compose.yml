@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:16
+    container_name: estoque_postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - estoque_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    container_name: estoque_backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    depends_on:
+      - db
+
+volumes:
+  estoque_data:
